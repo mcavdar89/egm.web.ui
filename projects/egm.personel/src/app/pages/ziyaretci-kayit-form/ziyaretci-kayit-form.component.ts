@@ -27,6 +27,8 @@ export class ZiyaretciKayitFormComponent extends BaseFormComponent<Ziyaretci> im
       { key: 'adres', inputType: InputType.textbox, label: 'Adres', required: true, minLength: 5, maxLength: 250 },
       { key: 'ziyaretTarihi', inputType: InputType.date, label: 'Ziyaret Tarihi', required: true },
       { key: 'misafirVarMi', inputType: InputType.checkbox, label: 'Misafir Var Mı?' },
+      {key:'misafirAd',show:false, inputType:InputType.textbox, label:'Misafir Ad', required:true, minLength:2, maxLength:50},
+      {key:'misafirSoyad',show:false, inputType:InputType.textbox, label:'Misafir Soyad', required:true, minLength:2, maxLength:50}
 
     ];
 
@@ -37,17 +39,15 @@ export class ZiyaretciKayitFormComponent extends BaseFormComponent<Ziyaretci> im
   }
 
   setMisafirVarMi(event: any) {
-    debugger;
+    let controlMisafirAd = this.formControlTempalte.find(x => x.key == 'misafirAd')!;
+    let controlMisafirSoyad = this.formControlTempalte.find(x => x.key == 'misafirSoyad')!;
     if (this.formGroup?.get('misafirVarMi')?.value[0]==true) {
-      this.formGroup?.addControl('misafirAd', this.formBuilder.control(null, [Validators.required, Validators.minLength(2), Validators.maxLength(50)]));
-      this.formGroup?.addControl('misafirSoyad', this.formBuilder.control(null, [Validators.required, Validators.minLength(2), Validators.maxLength(50)]));
-      this.formControlTempalte.push({ key: 'misafirAd', inputType: InputType.textbox, label: 'Misafir Ad', required: true, minLength: 2, maxLength: 50 });
-      this.formControlTempalte.push({ key: 'misafirSoyad', inputType: InputType.textbox, label: 'Misafir Soyad', required: true, minLength: 2, maxLength: 50 });
-    } else {
-      debugger;
-      this.formGroup?.removeControl('misafirAd');
-      this.formGroup?.removeControl('misafirSoyad');
-      this.formControlTempalte = this.formControlTempalte.filter(x => x.key != 'misafirAd' && x.key != 'misafirSoyad');
+      controlMisafirAd.show = true;
+      controlMisafirSoyad.show = true;
+    }
+    else {
+      controlMisafirAd.show = false;
+      controlMisafirSoyad.show = false;
     }
   }
 

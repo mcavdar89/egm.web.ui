@@ -2,6 +2,7 @@ export interface FormControlTemplate {
     key: string;
     inputType: string;
     readonly?: boolean;
+    show?: boolean;
     label?: string;
     value?: any|null|undefined;
 

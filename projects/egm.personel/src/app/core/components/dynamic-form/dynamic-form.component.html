@@ -1,13 +1,16 @@
 @if(baseFormComponent?.formGroup){
-    <form [formGroup]="baseFormComponent?.formGroup!">
+<form [formGroup]="baseFormComponent?.formGroup!">
+  @for (item of baseFormComponent?.formControlTempalte; track $index) {
+  @if(item.show!=false){
+  <form-input-control
+    [control]="item"
+    [formGroup]="baseFormComponent?.formGroup!"
+    (onChangeValue)="setOnChangeValue(item, $event)"
+  ></form-input-control>
+  } }
 
-        @for (item of baseFormComponent?.formControlTempalte; track $index) {
-        <form-input-control [control]="item" [formGroup]="baseFormComponent?.formGroup!" (onChangeValue)="setOnChangeValue(item, $event)"></form-input-control>
-
-        }
-
-        <div class="form-group">
-            <button class="btn btn-primary" (click)="save()">Kaydet</button>
-        </div>
-    </form>
-    }
+  <div class="form-group">
+    <button class="btn btn-primary" (click)="save()">Kaydet</button>
+  </div>
+</form>
+}
