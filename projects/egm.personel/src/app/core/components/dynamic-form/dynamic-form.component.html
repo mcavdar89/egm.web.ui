@@ -2,7 +2,7 @@
     <form [formGroup]="baseFormComponent?.formGroup!">
 
         @for (item of baseFormComponent?.formControlTempalte; track $index) {
-        <form-input-control [control]="item" [formGroup]="baseFormComponent?.formGroup!"></form-input-control>
+        <form-input-control [control]="item" [formGroup]="baseFormComponent?.formGroup!" (onChangeValue)="setOnChangeValue(item, $event)"></form-input-control>
 
         }
 

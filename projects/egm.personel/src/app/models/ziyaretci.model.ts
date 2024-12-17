@@ -5,6 +5,7 @@ export interface Ziyaretci {
     tcKimlikNo:string;
     telefon:string;
     email:string;
+    address:string;
     ziyaretTarihi:string;
     misafirVarMi:boolean;
     misafirAd:string;

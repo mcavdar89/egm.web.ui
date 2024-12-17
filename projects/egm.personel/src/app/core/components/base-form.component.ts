@@ -1,7 +1,8 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, Input } from '@angular/core';
 import { Form, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { FormControlTemplate } from '../models/form-control-template.model';
 import { BaseFormService } from '../services/base-form.service';
+import { InputControlCommand } from '../models/input-control-command';
 
 @Component({
   imports: [],
@@ -16,6 +17,7 @@ export class BaseFormComponent<T> {
 
   service?:BaseFormService<T>
 
+  inputCommandList : InputControlCommand[] = [];
 
   constructor() {
     this.formGroup = undefined;

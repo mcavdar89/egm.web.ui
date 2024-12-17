@@ -1,7 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FormInputControlComponent } from '../form-input-control/form-input-control.component';
 import { BaseFormComponent } from '../base-form.component';
+import { FormControlTemplate } from '../../models/form-control-template.model';
 
 @Component({
   selector: 'dynamic-form',
@@ -24,6 +25,9 @@ export class DynamicFormComponent implements OnInit {
     this.baseFormComponent?.save();
   }
 
+  setOnChangeValue(item: FormControlTemplate, event: any) {
+    this.baseFormComponent?.inputCommandList.filter(x => x.key == item.key).forEach(x => x.command?.call(this, event));
+  }
 
 
 }

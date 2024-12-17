@@ -1,35 +1,56 @@
 @if(control){
 <div [formGroup]="formGroup">
-
-
-    @switch (control.inputType) {
-    @case (InputType.textbox) {
-    <div class="form-group">
-        <label for="ad">{{control.label}}</label>
-        <input class="form-control" type="text" pInputText [formControlName]="control.key" />
-    </div>
-    }
-    @case (InputType.number) {
-    <div class="form-group">
-        <label for="ad">{{control.label}}</label>
-        <input class="form-control" type="number" pInputText [formControlName]="control.key" />
-    </div>
-    }
-    @case (InputType.dropdown) {
-    <div class="form-group">
-        <label for="ad">{{control.label}}</label>
-        <p-dropdown [formControlName]="control.key" [options]="control.options"
-            [optionLabel]="control.optionLabel||'label'" [optionValue]="control.optionValue||'value'" />
-
-    </div>
-    }
-    @case (InputType.date) {
-    <div class="form-group">
-        <label for="ad">{{control.label}}</label>
-        <p-calendar [formControlName]="control.key" />       
-
-    </div>
-    }
-    }
+  @switch (control.inputType) { @case (InputType.textbox) {
+  <div class="form-group">
+    <label for="ad">{{ control.label }}</label>
+    <input
+      class="form-control"
+      type="text"
+      pInputText
+      [formControlName]="control.key"
+      (ngModelChange)="setValuChanged($event)"
+    />
+  </div>
+  } @case (InputType.number) {
+  <div class="form-group">
+    <label for="ad">{{ control.label }}</label>
+    <input
+      class="form-control"
+      type="number"
+      pInputText
+      [formControlName]="control.key"
+      (ngModelChange)="setValuChanged($event)"
+    />
+  </div>
+  } @case (InputType.dropdown) {
+  <div class="form-group">
+    <label for="ad">{{ control.label }}</label>
+    <p-dropdown
+      [formControlName]="control.key"
+      [options]="control.options"
+      [optionLabel]="control.optionLabel || 'label'"
+      [optionValue]="control.optionValue || 'value'"
+      (onChange)="setValuChanged($event)"
+    />
+  </div>
+  } @case (InputType.date) {
+  <div class="form-group">
+    <label for="ad">{{ control.label }}</label>
+    <p-calendar
+      [formControlName]="control.key"
+      (ngModelChange)="setValuChanged($event)"
+    />
+  </div>
+  } @case (InputType.checkbox) {
+  <div class="flex align-items-center gap-1">
+    <p-checkbox
+      [formControlName]="control.key"
+      [value]="true"
+      inputId="ny"
+      (onChange)="setValuChanged($event)"
+    />
+    <label for="ny">{{ control.label }}</label>
+  </div>
+  } }
 </div>
 }
