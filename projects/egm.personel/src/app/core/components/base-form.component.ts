@@ -1,24 +1,26 @@
 import { Component, inject } from '@angular/core';
 import { Form, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { FormControlTemplate } from '../models/form-control-template.model';
+import { BaseFormService } from '../services/base-form.service';
 
 @Component({
   imports: [],
   template: ``,
 })
-export class BaseFormComponent {
+export class BaseFormComponent<T> {
 
   formGroup: FormGroup | undefined;
   formBuilder: FormBuilder;
 
   formControlTempalte: FormControlTemplate[] = [];
 
+  service?:BaseFormService<T>
+
+
   constructor() {
     this.formGroup = undefined;
     this.formBuilder = inject(FormBuilder);
   }
-
-
   setFormGroup() {
     this.formGroup = undefined;
     
@@ -30,8 +32,6 @@ export class BaseFormComponent {
     this.formGroup = this.formBuilder.group(controlList);
 
   }
-
-
   getFormControlValidators(item: FormControlTemplate): any[] {
     let validators = [];
 
@@ -52,6 +52,14 @@ export class BaseFormComponent {
     }
 
     return validators;
+
+  }
+
+  save() {
+    console.log(this.formGroup?.value);
+    this.service?.save(this.formGroup?.value).subscribe((data) => {
+
+    });
 
   }
 

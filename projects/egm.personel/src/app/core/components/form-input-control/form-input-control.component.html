@@ -23,6 +23,13 @@
 
     </div>
     }
+    @case (InputType.date) {
+    <div class="form-group">
+        <label for="ad">{{control.label}}</label>
+        <p-calendar [formControlName]="control.key" />       
+
+    </div>
+    }
     }
 </div>
 }

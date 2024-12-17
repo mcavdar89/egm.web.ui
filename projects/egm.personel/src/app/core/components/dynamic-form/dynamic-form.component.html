@@ -1,1 +1,13 @@
+@if(baseFormComponent?.formGroup){
+    <form [formGroup]="baseFormComponent?.formGroup!">
 
+        @for (item of baseFormComponent?.formControlTempalte; track $index) {
+        <form-input-control [control]="item" [formGroup]="baseFormComponent?.formGroup!"></form-input-control>
+
+        }
+
+        <div class="form-group">
+            <button class="btn btn-primary" (click)="save()">Kaydet</button>
+        </div>
+    </form>
+    }

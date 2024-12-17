@@ -1,16 +1,4 @@
 <div style="max-width: 720px; margin-left: auto !important;margin-right: auto !important;">
+    <dynamic-form [baseFormComponent]="this"></dynamic-form>
 
-    @if(formGroup){
-    <form [formGroup]="formGroup">
-
-        @for (item of formControlTempalte; track $index) {
-        <form-input-control [control]="item" [formGroup]="formGroup"></form-input-control>
-
-        }
-
-        <div class="form-group">
-            <button class="btn btn-primary" (click)="save()">Kaydet</button>
-        </div>
-    </form>
-    }
 </div>
