@@ -27,9 +27,6 @@ export class PersonelListComponent extends BaseListComponent<Personel> {
       {label:'Düzenle', icon:'pi pi-pencil', command:(event)=>{this.edit(event)}},
       {label:'Sil', icon:'pi pi-trash', command:(event)=>{this.delete(event)}}
     ]
-
-
-
     this.tableOption.columns = [
       { field: 'ad', header: 'Ad' },
       { field: 'soyad', header: 'Soyad' },
